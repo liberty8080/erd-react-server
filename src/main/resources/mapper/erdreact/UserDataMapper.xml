@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhao.erdreact.mapper.UserDataMapper">
+
+    <select id="listErd" resultType="com.zhao.erdreact.entity.ErdData">
+        select *
+        from user_data e
+                 left join erd_data ed on e.data_id = ed.data_id
+        where user_id = #{userId}
+    </select>
+</mapper>

@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.98.100:3306/erd_react?useUnicode=true&useSSL=false&characterEncoding=utf8
+    username: root
+    password: jacob@123
