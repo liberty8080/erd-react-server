@@ -3,6 +3,7 @@ package com.zhao.erdreact.controller;
 import com.zhao.erdreact.entity.ResultMsg;
 import com.zhao.erdreact.service.impl.AdminServiceImpl;
 import com.zhao.erdreact.service.impl.UserServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import javax.annotation.Resource;
  * @date 2020-04-22 上午00:31:30
  * @version: V1.0
  */
+@Slf4j
 @Controller
 @CrossOrigin
 @RequestMapping("/erd")
@@ -47,20 +49,25 @@ public class ErdController {
     }
 
 
-    String parseRole(String name, String passwd, String role) {
-        if (role.equals("admin")) {
-            if (adminService.getAdmin(name, passwd) != null)
-                return adminService.getAdmin(name, passwd).getAdminId();
-            else
-                return adminService.getAdmin(name, passwd).getAdminId();
+    String parseRole(String name, String passwd, String role){
+        try{
+            if (role.equals("admin")) {
+                if (adminService.getAdmin(name, passwd) != null)
+                    return adminService.getAdmin(name, passwd).getAdminId();
+                else
+                    return adminService.getAdmin(name, passwd).getAdminId();
 
-        } else if (role.equals("user")) {
-            if (userService.getUser(name, passwd) != null)
-                return userService.getUser(name, passwd).getUserId();
-            else
-                return userService.getUser(name, passwd).getUserId();
+            } else if (role.equals("user")) {
+                if (userService.getUser(name, passwd) != null)
+                    return userService.getUser(name, passwd).getUserId();
+                else
+                    return userService.getUser(name, passwd).getUserId();
 
-        } else {
+            }else {
+                return null;
+            }
+        }catch (NullPointerException e){
+            log.error("该用户不存在！",e);
             return null;
         }
 

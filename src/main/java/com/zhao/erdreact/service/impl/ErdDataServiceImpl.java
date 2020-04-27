@@ -32,7 +32,6 @@ public class ErdDataServiceImpl extends ServiceImpl<ErdDataMapper, ErdData> impl
         erdData.setDataId(dataId);
         erdData.setData(data);
         save(erdData);
-        //todo:将userId传到前台
         userData.setDataId(dataId);
         userData.setUserId(user);
         userDataService.save(userData);

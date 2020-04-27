@@ -49,10 +49,11 @@ public class UserDataController {
 
     @RequestMapping("/deleteErd")
     @ResponseBody
-    public ResultMsg delete(@RequestParam String erdID) {
+    public ResultMsg delete(@RequestParam String dataId) {
         ResultMsg msg = new ResultMsg();
         try {
-            dataService.removeById(erdID);
+            dataService.removeById(dataId);
+            userDataService.removeErd(dataId);
             msg.setSuccess(true);
         } catch (Exception e) {
             msg.setErrorMsg(ExceptionUtil.getMessage(e));

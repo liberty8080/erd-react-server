@@ -27,4 +27,8 @@ public class UserDataServiceImpl extends ServiceImpl<UserDataMapper, UserData> i
     public List<ErdData> listErd(String userId) {
         return mapper.listErd(userId);
     }
+
+    public void removeErd(String dataId){
+        mapper.removeErd(dataId);
+    }
 }
