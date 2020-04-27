@@ -3,6 +3,8 @@ package com.zhao.erdreact.controller;
 
 import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.zhao.erdreact.entity.ErdData;
 import com.zhao.erdreact.entity.ResultMsg;
 import com.zhao.erdreact.service.impl.ErdDataServiceImpl;
@@ -42,10 +44,28 @@ public class UserDataController {
         String userId = erdData.get("userId");
         String desc = erdData.get("desc");
         String name = erdData.get("name");
-        dataService.saveErd(userId, data,desc,name);
+        String dataId = erdData.get("dataId");
+
+        dataService.saveErd(userId, data, desc, name,dataId);
         msg.setSuccess(true);
         msg.setData(erdData.toString());
         System.out.println(erdData.toString());
+        return msg;
+    }
+
+    @RequestMapping("/updateErd")
+    @ResponseBody
+    public ResultMsg updateErd(@RequestBody Map<String,String> erdData){
+        ResultMsg msg = new ResultMsg();
+        try {
+            String data = erdData.get("data");
+            String dataId = erdData.get("dataId");
+            dataService.updateErd(dataId,data);
+            msg.setSuccess(true);
+        }catch (Exception e){
+            msg.setErrorMsg(ExceptionUtil.getMessage(e));
+            log.error("更新数据失败",e);
+        }
         return msg;
     }
 
@@ -79,4 +99,23 @@ public class UserDataController {
         }
         return msg;
     }
+
+    @RequestMapping("/getDataById")
+    @ResponseBody
+    public ResultMsg getDataBuId(String dataId) {
+        ResultMsg msg = new ResultMsg();
+        ErdData erdData ;
+        try {
+            erdData = dataService.getById(dataId);
+            msg.setSuccess(true);
+            JSONObject jsonObject = new JSONObject(erdData);
+            log.info(jsonObject.toString());
+            msg.setData(jsonObject.toString());
+        }catch (Exception e){
+            msg.setErrorMsg("获取er图失败");
+            log.error("获取er图失败！",e);
+        }
+        return msg;
+    }
+
 }

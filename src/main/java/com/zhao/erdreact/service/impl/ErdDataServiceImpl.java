@@ -24,12 +24,15 @@ public class ErdDataServiceImpl extends ServiceImpl<ErdDataMapper, ErdData> impl
     @Resource
     UserDataServiceImpl userDataService;
 
+    @Resource
+    ErdDataMapper dataMapper;
+
 
     public void saveErd(String userId, String data,String desc,
-                        String name) {
+                        String name,String dataId) {
         ErdData erdData = new ErdData();
         UserData userData = new UserData();
-        String dataId = IdUtil.simpleUUID();
+//        String dataId = IdUtil.simpleUUID();
         erdData.setDataId(dataId);
         erdData.setData(data);
         erdData.setDataDesc(desc);
@@ -38,6 +41,10 @@ public class ErdDataServiceImpl extends ServiceImpl<ErdDataMapper, ErdData> impl
         userData.setDataId(dataId);
         userData.setUserId(userId);
         userDataService.save(userData);
+    }
+
+    public void updateErd(String dataId,String data){
+        dataMapper.updateErd(dataId,data);
     }
 
 }
