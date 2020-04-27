@@ -27,5 +27,8 @@ public class ErdData implements Serializable {
 
     private String data;
 
+    private String dataName;
+
+    private String dataDesc;
 
 }

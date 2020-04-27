@@ -39,8 +39,10 @@ public class UserDataController {
     public ResultMsg saveErd(@RequestBody Map<String, String> erdData) {
         ResultMsg msg = new ResultMsg();
         String data = erdData.get("data");
-        String user = erdData.get("user");
-        dataService.saveErd(user, data);
+        String userId = erdData.get("userId");
+        String desc = erdData.get("desc");
+        String name = erdData.get("name");
+        dataService.saveErd(userId, data,desc,name);
         msg.setSuccess(true);
         msg.setData(erdData.toString());
         System.out.println(erdData.toString());
