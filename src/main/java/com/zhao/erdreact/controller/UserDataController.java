@@ -35,7 +35,6 @@ public class UserDataController {
     @Resource
     UserDataServiceImpl userDataService;
 
-    //todo:修改逻辑位如果则增加有的话就更新
     @RequestMapping("/saveErd")
     @ResponseBody
     public ResultMsg saveErd(@RequestBody Map<String, String> erdData) {
