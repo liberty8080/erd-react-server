@@ -40,9 +40,11 @@ public class ErdController {
         ResultMsg msg = new ResultMsg();
         String id = parseRole(username, password, role);
         if (id != null) {
+            log.info("{}--{}登录",role,username);
             msg.setData(id);
             msg.setSuccess(true);
         } else {
+            log.warn("来自{}的失败登录 ，用户名{}",role,username);
             msg.setErrorMsg("用户名或密码错误");
         }
         return msg;
@@ -67,7 +69,7 @@ public class ErdController {
                 return null;
             }
         }catch (NullPointerException e){
-            log.error("该用户不存在！",e);
+            log.error("登陆失败！该用户不存在！");
             return null;
         }
 

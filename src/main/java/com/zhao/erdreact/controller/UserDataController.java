@@ -63,7 +63,7 @@ public class UserDataController {
             msg.setSuccess(true);
         }catch (Exception e){
             msg.setErrorMsg(ExceptionUtil.getMessage(e));
-            log.error("更新数据失败",e);
+            log.error("Er图保存失败！");
         }
         return msg;
     }
@@ -78,7 +78,7 @@ public class UserDataController {
             msg.setSuccess(true);
         } catch (Exception e) {
             msg.setErrorMsg(ExceptionUtil.getMessage(e));
-            log.error("erdData删除失败", e);
+            log.error("er图删除失败");
         }
         return msg;
     }
@@ -94,7 +94,7 @@ public class UserDataController {
             msg.setData(jsonArray.toString());
         } catch (Exception e) {
             msg.setErrorMsg(ExceptionUtil.getMessage(e));
-            log.error("关系图获取失败！", e);
+            log.error("关系图获取失败！");
         }
         return msg;
     }
@@ -112,7 +112,7 @@ public class UserDataController {
             msg.setData(jsonObject.toString());
         }catch (Exception e){
             msg.setErrorMsg("获取er图失败");
-            log.error("获取er图失败！",e);
+            log.error("获取er图失败！");
         }
         return msg;
     }
